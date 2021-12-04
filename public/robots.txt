@@ -1,0 +1,45 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow:
+{
+  "wordpairs": [
+    {
+      "id": 1,
+      "diff": 1,
+      "word": "cat",
+      "meaning": "macska"
+    },
+    {
+      "id": 2,
+      "diff": 3,
+      "word": "hammer",
+      "meaning": "kalapács"
+    },
+    {
+      "word": "dog",
+      "meaning": "kutya",
+      "diff": "2",
+      "id": 3
+    }
+  ],
+  "sentences": [
+    {
+      "id": 1,
+      "sentence": "The cat climbed ___ the tree",
+      "a": "on",
+      "b": "to",
+      "c": "in",
+      "d": "from",
+      "diff": 1
+    },
+    {
+      "id": 2,
+      "sentence": "He ___ that she would pass",
+      "a": "insured",
+      "b": "ensured",
+      "c": "assumed",
+      "d": "assured",
+      "diff": 6
+    }
+  ]
+}
