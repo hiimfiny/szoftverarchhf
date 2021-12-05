@@ -71,22 +71,16 @@
   ],
   "users": [
     {
-      "usr": "asd",
-      "pwd": "qwe",
-      "mod": false,
-      "id": 1
-    },
-    {
-      "usr": "a",
-      "pwd": "a",
-      "mod": true,
-      "id": 2
-    },
-    {
       "usr": "mod",
       "pwd": "mod",
       "mod": true,
-      "id": 3
+      "id": 1
+    },
+    {
+      "usr": "user",
+      "pwd": "user",
+      "mod": false,
+      "id": 2
     }
   ]
 }

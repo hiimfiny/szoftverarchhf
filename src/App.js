@@ -63,6 +63,7 @@ function App() {
   const[showLogin, setShowLogin] = useState(false)
   const[showPairs, setShowPairs] = useState(false)
   const[showSentences, setShowSentences] = useState(false)
+  const[showLessonButton, setShowLessonButton] = useState(false)
   const[showLessons, setShowLessons] = useState(false)
   const[mod, setMod] = useState(false)
 
@@ -85,7 +86,11 @@ function App() {
   const login = (user) => {
     let alertv = 0
     users.map((userm)=>{
-      if(userm.usr === user.usr && userm.pwd === user.pwd) {setMod(userm.mod); alertv=1} 
+      if(userm.usr === user.usr && userm.pwd === user.pwd) {
+        setMod(userm.mod)
+        alertv=1
+        setShowLessonButton(true)
+      } 
     })
     if(alertv==0) alert("Incorrect username or password")
   }
@@ -182,7 +187,7 @@ function App() {
       <div>
         {mod && <Button text='Wordpairs' onClick={()=>{setShowPairs(!showPairs)}}/>}
         {mod && <Button text='Sentences' onClick={()=>{setShowSentences(!showSentences)}}/>}
-        {<Button text='Lessons' onClick={()=>{setShowLessons(!showLessons)}}/>}
+        {showLessonButton && <Button text='Lessons' onClick={()=>{setShowLessons(!showLessons)}}/>}
       </div>
 
       <div>
