@@ -14,7 +14,7 @@ const AddSentenceForm = ({showAdd, onAddSentence}) => {
         onAddSentence({sentence,a,b,c,d,diff})
         showAdd()
     }
-
+    //Egy formot ad vissza, amiben a mondat paramétereit adhatjuk meg
     return (
         <form className='addWord' onSubmit={onSubmit}>
             <div className='form-control'>

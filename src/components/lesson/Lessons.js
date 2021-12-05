@@ -6,7 +6,6 @@ import AddLesson from "./AddLesson"
 
 const Lessons = ({lessons,wordpairs, sentences, onDelete, onAdd, mod}) => {
     
-    
     var showArray = []
     for(let i=0; i<lessons.length;i++){
         showArray[i]=false
@@ -28,14 +27,13 @@ const Lessons = ({lessons,wordpairs, sentences, onDelete, onAdd, mod}) => {
                 <div key={lesson.id}>
                     
                     <h3>{lesson.name}</h3>
-                    <FaTimes style={{cursor: "pointer"}}
-                    onClick={()=>onDelete(lesson.id)}/>
+                    {mod && <FaTimes style={{cursor: "pointer"}}
+                    onClick={()=>onDelete(lesson.id)}/>}
                     <br/>
                     {!mod && <Button text='Solve'onClick={()=>updateShow(lesson.id-1)}/>}
                     {lessonShow[lesson.id-1] && <Lesson key={lesson.id} lesson={lesson}
                     wordpairs={wordpairs} sentences={sentences}/>}
                 </div>
-                
             ))}
         </div>
     )

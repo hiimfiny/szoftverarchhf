@@ -5,17 +5,17 @@ const EditWordForm = ({onEdit, showEdit, wordpairs, id}) => {
     const [word,setWord] = useState('-1')
     const [meaning,setMeaning] = useState('-1')
     const [diff,setDiff]= useState('-1')
-    
     const tempArray = wordpairs
     var temppair=null;
+
     const findPair = ()=>{
         for(let i=0; i<tempArray.length; i++){
             if(tempArray[i].id === id)
                 temppair=tempArray[i]
         }
     }
-
     findPair()
+
     const onSubmit = (e) => {
         e.preventDefault()
         const ret = 
@@ -46,7 +46,6 @@ const EditWordForm = ({onEdit, showEdit, wordpairs, id}) => {
                 <label>Difficulty</label>
                 <input type='text' placeholder='' 
                 value={diff === '-1' ? temppair.diff : diff}
-                
                 onChange={(e) => setDiff(e.target.value)}/>
             </div>
 

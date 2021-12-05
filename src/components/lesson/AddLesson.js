@@ -6,17 +6,12 @@ const AddLesson = ({wordpairs, sentences, onAdd}) => {
     const [lessonsent, setLessonSent] = useState([])
     const [lessonname, setLessonName] = useState('')
     const [showLessonAdd, setShowLessonAdd] = useState(false)
-    var tempLesson={
-        name: '',
-        pairs: [],
-        sentences: []
-     }
-
+    
     const onAddLesson = ()=>{
         onAdd(lessonname,lessonpairs,lessonsent)
         setShowLessonAdd(!showLessonAdd)
     }
-
+    //Megvizsgálja, hogy az adott szó/mondat hozzá van-e adva a leckéhez
     const contains = (id,type) =>{
         if(type==='w'){
             for(let i=0;i<lessonpairs.length;i++){
@@ -31,6 +26,7 @@ const AddLesson = ({wordpairs, sentences, onAdd}) => {
             return false
         }
     }
+
     const wordDoubleClick = (id) =>{
         let tempArray = [...lessonpairs, id]
         setLessonpairs(tempArray)
@@ -39,8 +35,10 @@ const AddLesson = ({wordpairs, sentences, onAdd}) => {
         let tempArray=[...lessonsent, id]
         setLessonSent(tempArray)
     }
+
     return (
         <div>
+            {/*A gomb hatására megjelennek a szavak és a mondatok, ezekre duplán kattintva hozzáadódnak a leckéhez*/}
             <Button text='Add' onClick={()=>setShowLessonAdd(!showLessonAdd)}/>
             {showLessonAdd && <div>
             <h3>Words:</h3>
@@ -62,6 +60,8 @@ const AddLesson = ({wordpairs, sentences, onAdd}) => {
             <input type='text' placeholder='Enter the name of the lesson'
             value={lessonname} onChange={(e)=> setLessonName(e.target.value)}/>
             <Button text='Add lesson' onClick={()=>onAddLesson() }/>
+            
+            {/*Itt láthatjuk a leckéhez hozzáadott szavakat és mondatokat*/}
             <h3>Selected Words:</h3>
             {wordpairs.map((pair)=>(
                 <div key={pair.id} >

@@ -3,6 +3,8 @@ import Button from "../Button"
 import Result from "./Result"
 
 const Lesson = ({lesson, wordpairs, sentences}) => {
+
+    //A leckék létrehozásához és továbbításához használt változók
     const [showForm, setShowForm] = useState(true)
     const [solution, setSolution] = useState([])
     const [sentenceCorrect, setSentenceCorrect] = useState([])
@@ -14,6 +16,7 @@ const Lesson = ({lesson, wordpairs, sentences}) => {
     var wordsSol = []
     var sentenceSol = []
 
+    //A leckében tárolt id-k alapján hozzáadja a megfelelő tömbökhöz a szavakat illetve mondatokat
     const fillArrays = () =>{
         for(let i=0; i<lesson.pairs.length; i++){
             for(let j=0; j<wordpairs.length; j++){
@@ -38,6 +41,7 @@ const Lesson = ({lesson, wordpairs, sentences}) => {
         }  
     }
    
+    //A mondatok válaszlehetőségeit keveri össze
     const shuffle = (sentences) =>{
         var array=sentences
         for(let i=array.length-1; i>0;i--){
@@ -49,6 +53,7 @@ const Lesson = ({lesson, wordpairs, sentences}) => {
         return array
     }
 
+    //A szavak illetve mondatok indexeinek visszakereséséhez szükséges függvény
     const findWord = (word) =>{
         for(let i=0;i<wordsArray.length;i++){
             if(wordsArray[i].word===word){
@@ -56,7 +61,6 @@ const Lesson = ({lesson, wordpairs, sentences}) => {
             }
         }
     }
-
     const findSentence = (sentence) => {
         for(let i=0; i<sentenceArray.length;i++){
             if(sentenceArray[i].sentence === sentence){
@@ -65,8 +69,7 @@ const Lesson = ({lesson, wordpairs, sentences}) => {
         }
     }
 
-    fillArrays()
-
+    //Egy tömbbe szervezi az általtunk adott válaszokat, és átadja az eredményt kezelő komponensnek
     const onSubmit = (e) => {
         e.preventDefault()
         setSentenceCorrect(sentenceAnswers)
@@ -81,9 +84,9 @@ const Lesson = ({lesson, wordpairs, sentences}) => {
         }
         setSolution(solArray)
         setShowForm(!showForm)
-        
     }
 
+    fillArrays()
     return (
         <div>
             {showForm &&<form onSubmit={onSubmit}>
@@ -114,7 +117,8 @@ const Lesson = ({lesson, wordpairs, sentences}) => {
             <br/>
             <input className='btn' type='submit' value='Submit answers' />
         </form>}
-
+        
+        {/* A lecke kitöltése után megjeleníti az eredményt */}
         {!showForm && <Result words={wordsArray} sentences={sentenceArray}
         solution={solution} correct={sentenceCorrect} />}
         </div>

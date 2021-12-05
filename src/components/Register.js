@@ -2,9 +2,9 @@ import { useState } from "react"
 
 const Register = ( {onRegister, onClick} ) => {
 
-const [usr, SetUsername] = useState('')
-const [pwd, SetPassword] = useState('')
-const [mod, SetMod] = useState(false)
+    const [usr, SetUsername] = useState('')
+    const [pwd, SetPassword] = useState('')
+    const [mod, SetMod] = useState(false)
 
     const onSubmit = (e) => {
         e.preventDefault()

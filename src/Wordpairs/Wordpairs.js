@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Wordpair from "./Wordpair"
-import Button from "./Button"
+import Button from "../components/Button"
 import AddWordForm from "./AddWordForm"
 import EditWordForm from "./EditWordForm"
 

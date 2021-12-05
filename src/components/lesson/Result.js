@@ -3,6 +3,7 @@ import React from 'react'
 const Result = ({words, sentences, solution, correct}) => {
     const questions = []
     const result = []
+    //Kiértékeli a paraméterül kapott megoldásokat
     const evaulate = () => {
         for(let i=0;i<words.length;i++){
             questions[i]={id: i, q: words[i].word, a: words[i].meaning}
@@ -18,6 +19,7 @@ const Result = ({words, sentences, solution, correct}) => {
     }
 
     evaulate()
+    
     return (
         <div>
             {questions.map((question)=>(

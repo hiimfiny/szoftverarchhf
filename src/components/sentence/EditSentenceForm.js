@@ -32,6 +32,7 @@ const EditSentenceForm = ({onEdit, showEdit,sentences ,id}) => {
         onEdit(id,ret)
         showEdit()
     }
+
     return (
         <form className='addWord' onSubmit={onSubmit}>
             <div className='form-control'>

@@ -13,7 +13,6 @@ const AddWordForm = ( {onAdd, showAdd}) => {
     }   
 
     return (
-        
         <form className='addWord' onSubmit={onSubmit}>
             <div className='form-control'>
                 <label>Word</label>

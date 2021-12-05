@@ -167,7 +167,7 @@ function App() {
   }
   return (
     <div className="App">
-      <Header regfunc = {setRegFunc} logfunc = {setLogFunc} />
+      <Header title ={"Nyelvtanulást segítő alkalmazás"} regfunc = {setRegFunc} logfunc = {setLogFunc} />
     
       <div>
       {showRegister && <Register onRegister={addUser}
