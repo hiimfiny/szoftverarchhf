@@ -8,7 +8,6 @@ import Header from './components/Header';
 import Wordpairs from './components/Wordpairs';
 import Sentences from './components/sentence/Sentences';
 import Lessons from './components/lesson/Lessons';
-import AddLesson from './components/lesson/AddLesson';
 
 
 function App() {
@@ -18,20 +17,16 @@ function App() {
   const [users, setUsers] = useState([])
   useEffect(() => {
     const getWords = async () => {
-      const wordsFromServer = await fetchWords()
-      setWordPairs(wordsFromServer)
+      setWordPairs(await fetchWords())
     }
     const getSentences = async () =>{
-      const sentencesFromServer = await fetchSentences()
-      setSentences(sentencesFromServer)
+      setSentences(await fetchSentences())
     }
     const getLessons = async ()=>{
-      const lessonsFromServer = await fetchLessons()
       setLessons(await fetchLessons())
     }
     const getUsers = async ()=>{
-      const usersFromServer = await fetchUsers()
-      setUsers(usersFromServer)
+      setUsers(await fetchUsers())
     }
 
     getWords()

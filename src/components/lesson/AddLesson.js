@@ -32,10 +32,8 @@ const AddLesson = ({wordpairs, sentences, onAdd}) => {
         }
     }
     const wordDoubleClick = (id) =>{
-        console.log(tempLesson)
         let tempArray = [...lessonpairs, id]
         setLessonpairs(tempArray)
-        console.log(lessonpairs)
     }
     const sentenceDoubleClick = (id) =>{
         let tempArray=[...lessonsent, id]

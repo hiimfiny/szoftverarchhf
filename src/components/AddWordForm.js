@@ -8,7 +8,6 @@ const AddWordForm = ( {onAdd, showAdd}) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log('Wordpair added')
         onAdd({word,meaning,diff})
         showAdd()
     }   

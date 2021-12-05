@@ -12,13 +12,11 @@ const Lessons = ({lessons,wordpairs, sentences, onDelete, onAdd, mod}) => {
         showArray[i]=false
     }
     const [lessonShow, setLessonShow] = useState(showArray)
-    console.log(lessonShow)
     
     const updateShow = index => {
         let tempArray = [...lessonShow]
         tempArray[index]=!tempArray[index]
         setLessonShow(tempArray)
-        console.log(lessonShow)
     }
 
     return (

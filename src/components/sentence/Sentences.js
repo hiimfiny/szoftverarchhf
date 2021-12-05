@@ -9,7 +9,7 @@ const Sentences = ({sentences, onAddSentence, onEdit,onDelete}) => {
     const [showAdd, setShowAdd] = useState(false)
     const [showEdit, setShowEdit] = useState(false)
     const [editId, setEditId] = useState('')
-    console.log(sentences)
+    
     return (
         <div>
             <div>
