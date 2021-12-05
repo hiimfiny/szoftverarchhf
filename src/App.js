@@ -5,16 +5,19 @@ import Button from './components/Button';
 import Register from './components/Register';
 import Login from './components/Login';
 import Header from './components/Header';
-import Wordpairs from './components/Wordpairs';
+
 import Sentences from './components/sentence/Sentences';
 import Lessons from './components/lesson/Lessons';
-
+import Wordpairs from './components/wordpairs/Wordpairs';
 
 function App() {
+  //Az alkalmazásban tárolt adatok változói
   const [wordpairs, setWordPairs] = useState([])
   const [sentences, setSentences] = useState([])
   const [lessons, setLessons] = useState([])
   const [users, setUsers] = useState([])
+
+  //Itt tölti fel a tömböket az adatbázisban szereplő adatok alapján
   useEffect(() => {
     const getWords = async () => {
       setWordPairs(await fetchWords())
@@ -28,7 +31,6 @@ function App() {
     const getUsers = async ()=>{
       setUsers(await fetchUsers())
     }
-
     getWords()
     getSentences()
     getLessons()
@@ -56,6 +58,7 @@ function App() {
     return data
   }
 
+  //A UI-hoz használt változók
   const[showRegister, setShowRegister] = useState(false)
   const[showLogin, setShowLogin] = useState(false)
   const[showPairs, setShowPairs] = useState(false)
@@ -82,9 +85,9 @@ function App() {
   const login = (user) => {
     let alertv = 0
     users.map((userm)=>{
-      if(userm.usr === user.usr && userm.pwd === user.pwd) {setMod(userm.mod); alertv=1}
-      else {if(alertv==0) {alert("Incorrect username or password"); alertv=1}}
+      if(userm.usr === user.usr && userm.pwd === user.pwd) {setMod(userm.mod); alertv=1} 
     })
+    if(alertv==0) alert("Incorrect username or password")
   }
 
   //---Wordpair functions---
@@ -107,13 +110,11 @@ function App() {
 
   //Editing word
   const editWord = async (id, wordpair) => {
-    //const updatedWord=wordpair
     const res = await fetch(`http://localhost:5000/wordpairs/${id}` ,{
       method: 'PUT',
       headers: {'Content-type':'application/json'},
       body: JSON.stringify(wordpair)
     })
-
     setWordPairs(await fetchWords())
   }
 
@@ -145,6 +146,7 @@ function App() {
     })
     setSentences(await fetchSentences())
   }
+
   //---Lesson functions---
   //Adding lesson
   const addLesson = async (name,pairs,sentences) =>{
@@ -170,22 +172,24 @@ function App() {
       <Header title ={"Nyelvtanulást segítő alkalmazás"} regfunc = {setRegFunc} logfunc = {setLogFunc} />
     
       <div>
-      {showRegister && <Register onRegister={addUser}
-      onClick={()=>setShowRegister(!showRegister)}/>}
+        {showRegister && <Register onRegister={addUser}
+        onClick={()=>setShowRegister(!showRegister)}/>}
 
-      {showLogin && <Login onLogin={login} 
-      onClick={()=> setShowLogin(!showLogin)}/>}
+        {showLogin && <Login onLogin={login} 
+        onClick={()=> setShowLogin(!showLogin)}/>}
       </div>
+
       <div>
         {mod && <Button text='Wordpairs' onClick={()=>{setShowPairs(!showPairs)}}/>}
         {mod && <Button text='Sentences' onClick={()=>{setShowSentences(!showSentences)}}/>}
         {<Button text='Lessons' onClick={()=>{setShowLessons(!showLessons)}}/>}
       </div>
+
       <div>
-      {showPairs && <Wordpairs wordpairs={wordpairs} 
-      onAdd={addWord}
-      onEdit ={editWord} 
-      onDelete={onDelete}/>}
+        {showPairs && <Wordpairs wordpairs={wordpairs} 
+        onAdd={addWord}
+        onEdit ={editWord} 
+        onDelete={onDelete}/>}
       </div>
       
       <div>
