@@ -48,7 +48,7 @@ const AddLesson = ({wordpairs, sentences, onAdd}) => {
     return (
         <div>
             <h3>Words:</h3>
-            {wordpairs.pairs.map((pair)=>(
+            {wordpairs.map((pair)=>(
                 <div className='word' key={pair.id} 
                 onDoubleClick={()=>wordDoubleClick(pair.id)}>
                     <h3>{pair.word}</h3>
@@ -56,25 +56,25 @@ const AddLesson = ({wordpairs, sentences, onAdd}) => {
                 </div>
             ))}
             <h3>Sentences:</h3>
-            {sentences.sentences.map((sentence)=>(
+            {sentences.map((sentence)=>(
                 <div className='word' key={sentence.id}
                 onDoubleClick={()=>sentenceDoubleClick(sentence.id)}>
                     <h3>{sentence.sentence}</h3>
                 </div>
 
             ))}
-            <input type='text' placeholdet='Enter the name of the lesson'
+            <input type='text' placeholder='Enter the name of the lesson'
             value={lessonname} onChange={(e)=> setLessonName(e.target.value)}/>
             <Button text='Add lesson' onClick={()=>onAddLesson() }/>
             <h3>Selected Words:</h3>
-            {wordpairs.pairs.map((pair)=>(
+            {wordpairs.map((pair)=>(
                 <div key={pair.id} >
                     {contains(pair.id,'w') && <h3>{pair.word}</h3>}
                     
                 </div>
             ))}
             <h3>Selected Sentences:</h3>
-            {sentences.sentences.map((sent)=>(
+            {sentences.map((sent)=>(
                 <div key={sent.id}> 
                     {contains(sent.id,'s') && <h3>{sent.sentence}</h3>}
                 </div>

@@ -8,11 +8,9 @@ const EditSentenceForm = ({onEdit, showEdit,sentences ,id}) => {
     const [d, setD] = useState('.')
     const [diff, setDiff] = useState('.')
     
-    
-    
     const tempArray=sentences
-    
     var tempSent=null
+
     const findSent = ()=>{
         for(let i=0; i<tempArray.length; i++){
             if(tempArray[i].id === id)
@@ -24,7 +22,7 @@ const EditSentenceForm = ({onEdit, showEdit,sentences ,id}) => {
     const onSubmit = (e) => {
         e.preventDefault()
         const ret={
-            'sentence' : sentence ==='' ? tempSent.sentence : sentence,
+            'sentence' : sentence ==='.' ? tempSent.sentence : sentence,
             'a' : a ==='.' ? tempSent.a : a,
             'b' : b ==='.' ? tempSent.b : b,
             'c' : c ==='.' ? tempSent.c : c,
@@ -42,6 +40,7 @@ const EditSentenceForm = ({onEdit, showEdit,sentences ,id}) => {
                 value={sentence ==='.' ? tempSent.sentence : sentence}
                 onChange={(e)=>setSent(e.target.value)} />
             </div>
+
             <div className='form-control'>
                 <label>Options</label>
                 <input style={{width: 200 }}
@@ -61,6 +60,7 @@ const EditSentenceForm = ({onEdit, showEdit,sentences ,id}) => {
                 value={d ==='.' ? tempSent.d : d} 
                 onChange={(e)=>setD(e.target.value)}/>
             </div>
+            
             <div className='form-control'>
                 <label>Difficulty</label>
                 <input type='text' placeholder={tempSent.diff} 
@@ -68,8 +68,6 @@ const EditSentenceForm = ({onEdit, showEdit,sentences ,id}) => {
                 onChange={(e)=>setDiff(e.target.value)}/>
             </div>
             <input className='btn' type='submit' value='Save' />
-
-
         </form>
     )
 }

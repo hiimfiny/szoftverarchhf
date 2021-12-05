@@ -33,7 +33,7 @@ const Sentences = ({sentences, onAddSentence, onEdit,onDelete}) => {
                 {showEdit && <EditSentenceForm
                 onEdit={onEdit}
                 showEdit={()=>{setShowEdit(!showEdit)}}
-                language={sentences}
+                sentences={sentences}
                 id={editId} 
                 
                 />}

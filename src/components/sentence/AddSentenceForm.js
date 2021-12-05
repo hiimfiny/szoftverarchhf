@@ -11,10 +11,10 @@ const AddSentenceForm = ({showAdd, onAddSentence}) => {
     
     const onSubmit = (e) => {
         e.preventDefault()
-        
         onAddSentence({sentence,a,b,c,d,diff})
         showAdd()
     }
+
     return (
         <form className='addWord' onSubmit={onSubmit}>
             <div className='form-control'>
@@ -23,6 +23,7 @@ const AddSentenceForm = ({showAdd, onAddSentence}) => {
                 value={sentence}
                 onChange={(e)=>setSent(e.target.value)} />
             </div>
+
             <div className='form-control'>
                 <label>Options</label>
                 <input style={{width: 200 }}
@@ -38,14 +39,13 @@ const AddSentenceForm = ({showAdd, onAddSentence}) => {
                 type='text' placeholder='d)' 
                 value={d} onChange={(e)=>setD(e.target.value)}/>
             </div>
+
             <div className='form-control'>
                 <label>Difficulty</label>
                 <input type='text' placeholder='Difficulty' 
                 value={diff} onChange={(e)=>setDiff(e.target.value)}/>
             </div>
             <input className='btn' type='submit' value='Save' />
-
-
         </form>
     )
 }

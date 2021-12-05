@@ -7,65 +7,49 @@ const Lesson = ({lesson, wordpairs, sentences}) => {
     const [showForm, setShowForm] = useState(true)
     const [solution, setSolution] = useState([])
     const [sentenceCorrect, setSentenceCorrect] = useState([])
-    console.log(sentences)
+
     var wordsArray = []
     var sentenceArray = []
     var abcdArray=[]
     var sentenceAnswers = []
-    
     var wordsSol = []
     var sentenceSol = []
-    
 
     const fillArrays = () =>{
         for(let i=0; i<lesson.pairs.length; i++){
-            for(let j=0; j<wordpairs.pairs.length; j++){
-                if(lesson.pairs[i] === wordpairs.pairs[j].id){
-                    wordsArray=[...wordsArray, wordpairs.pairs[j]]
-                    console.log(wordsArray)
+            for(let j=0; j<wordpairs.length; j++){
+                if(lesson.pairs[i] === wordpairs[j].id){
+                    wordsArray=[...wordsArray, wordpairs[j]]
                 }
             }
             wordsSol[i]='.'
         }
         for(let i=0; i<lesson.sentences.length; i++){
-            for(let j=0; j<sentences.sentences.length; j++){
-                if(lesson.sentences[i] === sentences.sentences[j].id)
+            for(let j=0; j<sentences.length; j++){
+                if(lesson.sentences[i] === sentences[j].id)
                 {
-                    sentenceArray=[...sentenceArray, sentences.sentences[j]]
-                    //sentenceAnswers[i]=sentences.sentences[j].a
-                    sentenceAnswers[i]=sentences.sentences[j].a
-                    
-                    //sentenceArray[i].id=i+1;
-                    console.log('létrehozáskor: '+sentenceAnswers[i])
-                    console.log(sentenceArray[i])
+                    sentenceArray=[...sentenceArray, sentences[j]]
+                    sentenceAnswers[i]=sentences[j].a
                 }
             }
-            console.log(sentenceArray[i].a)
             let answers=[sentenceArray[i].a,sentenceArray[i].b,sentenceArray[i].c,sentenceArray[i].d]
             var array = shuffle(answers)
-            console.log(array)
             abcdArray[i]={a: array[0], b: array[1], c: array[2], d: array[3] }
-            console.log(abcdArray)
             sentenceSol[i]='.'
-            
-        }
-        
+        }  
     }
    
     const shuffle = (sentences) =>{
         var array=sentences
-        console.log('Original array: ' + array)
         for(let i=array.length-1; i>0;i--){
             const j=Math.floor(Math.random()*(i+1))
             const temp = array[i]
             array[i]=array[j]
             array[j]=temp
         }
-        console.log("Shuffled array: " + array)
         return array
-        
-
     }
+
     const findWord = (word) =>{
         for(let i=0;i<wordsArray.length;i++){
             if(wordsArray[i].word===word){
@@ -73,6 +57,7 @@ const Lesson = ({lesson, wordpairs, sentences}) => {
             }
         }
     }
+
     const findSentence = (sentence) => {
         for(let i=0; i<sentenceArray.length;i++){
             if(sentenceArray[i].sentence === sentence){
@@ -82,18 +67,11 @@ const Lesson = ({lesson, wordpairs, sentences}) => {
     }
 
     fillArrays()
-    
-    
-    
+
     const onSubmit = (e) => {
         e.preventDefault()
-/*
-        console.log(wordsSol)
-        console.log(sentenceSol)
-*/
-
         setSentenceCorrect(sentenceAnswers)
-        
+
         let solArray= []
         for(let i=0;i<wordsSol.length;i++){
             solArray[i]=wordsSol[i]
@@ -103,11 +81,10 @@ const Lesson = ({lesson, wordpairs, sentences}) => {
             solArray[w+j]=sentenceSol[j]
         }
         setSolution(solArray)
-        console.log(solArray)
         setShowForm(!showForm)
         
     }
-
+    
     return (
         <div>
             {showForm &&<form onSubmit={onSubmit}>

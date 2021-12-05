@@ -37,6 +37,39 @@
       "c": "assumed",
       "d": "assured",
       "diff": 6
+    },
+    {
+      "sentence": "aasd",
+      "a": "a",
+      "b": "s",
+      "c": "w",
+      "d": "e",
+      "diff": "1",
+      "id": 3
+    }
+  ],
+  "lessons": [
+    {
+      "name": "Test lesson 1",
+      "pairs": [
+        1,
+        2
+      ],
+      "sentences": [
+        1
+      ],
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Test Lesson 2",
+      "pairs": [
+        2,
+        3
+      ],
+      "sentences": [
+        2
+      ]
     }
   ]
 }
