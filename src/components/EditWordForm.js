@@ -13,26 +13,20 @@ const EditWordForm = ({onEdit, showEdit, wordpairs, id}) => {
             if(tempArray[i].id === id)
                 temppair=tempArray[i]
         }
-        
-         
-
-
     }
+
     findPair()
-    console.log('a')
     const onSubmit = (e) => {
         e.preventDefault()
-        
-        const ret = {'word': word ==='-1' ? temppair.word : word, 
-                    'meaning': meaning ==='-1' ? temppair.meaning : meaning, 
-                    'diff':diff === '-1' ? temppair.diff : diff}
-        console.log(ret)
+        const ret = 
+        {'word': word ==='-1' ? temppair.word : word, 
+        'meaning': meaning ==='-1' ? temppair.meaning : meaning, 
+        'diff':diff === '-1' ? temppair.diff : diff}
         onEdit(id, ret)
         showEdit()
     }   
     
     return (
-        
         <form className='editWord' onSubmit={onSubmit}>
             <div className='form-control'>
                 <label>Word</label>

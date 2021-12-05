@@ -35,7 +35,7 @@ function App() {
     return data
   }
   const fetchWord = async (id) =>{
-    const res = await fetch(`http://localhost:5000/wordpairs`)
+    const res = await fetch(`http://localhost:5000/wordpairs/${id}`)
     const data = await res.json()
     console.log(data)
     return data
@@ -82,47 +82,44 @@ function App() {
     console.log(`Welcome ${user.usr}`)
   }
 
+  //---Wordpair functions---
+  //Adding word
   const addWord = async (wordpair) => {
     const res = await fetch('http://localhost:5000/wordpairs',{
       method: 'POST',
       headers:{ 'Content-type': 'application/json'},
       body: JSON.stringify(wordpair),
     })
-    console.log(res.body)
-    const id=wordpairs.length+1
-    const newWord = {id, ...wordpair}
-    setWordPairs([...wordpairs, newWord])
-    console.log([wordpairs])
+    
+    setWordPairs(await fetchWords())
   }
 
-  const editWord = (id, wordpair) => {
-    console.log(id, "edited")
-    const tempArray = wordpairs.pairs
-      
-    for(let i=0; i<tempArray.length; i++){
-        if(tempArray[i].id === id){
-          tempArray[i].word=wordpair.word
-          tempArray[i].meaning=wordpair.meaning
-          tempArray[i].diff=wordpair.diff
-        }
-      }
-      setWordPairs({pairs: tempArray})
-  }
-
+  //Deleting word
   const onDelete = async (id) =>{
     await fetch(`http://localhost:5000/wordpairs/${id}`, {method: 'DELETE'})
-
-    console.log('delete', id)
-    setWordPairs(wordpairs.filter(pair=> pair.id !== id))
-    
+    setWordPairs(await fetchWords())
   }
 
+  //Editing word
+  const editWord = async (id, wordpair) => {
+    const updatedWord=wordpair
+    const res = await fetch(`http://localhost:5000/wordpairs/${id}` ,{
+      method: 'PUT',
+      headers: {'Content-type':'application/json'},
+      body: JSON.stringify(updatedWord)
+    })
+
+    setWordPairs(await fetchWords())
+  }
+
+  
+  //Sentence functions
   const addSentence = async (sentence) => {
     const id=sentences.length+1
     const newSent = {id, ...sentence}
     const res = await fetch('http://localhost:5000/sentences',{
       method: 'POST',
-      headers:{'Content-type':'applicaton/json'},
+      headers:{'Content-type':'application/json'},
       body: JSON.stringify(sentence),
   })
     console.log(JSON.stringify(sentence))

@@ -8,15 +8,12 @@ const Wordpairs = ({wordpairs, onAdd, onEdit, onDelete}) => {
     const [showAdd, setShowAdd] = useState(false) 
     const [showEdit, setShowEdit] = useState(false)
     const [editId, setEditId] = useState('')
-    console.log(wordpairs)
-    return (
 
+    return (
         <div>
-          
           <div>
           <Button text='Add' onClick={()=> setShowAdd(!showAdd)} />
           </div>
-          
           <div> 
              {showAdd && <AddWordForm onAdd={onAdd}  
               showAdd={()=>{setShowAdd(!showAdd)}}/>}

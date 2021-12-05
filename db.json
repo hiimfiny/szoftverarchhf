@@ -1,10 +1,10 @@
 {
   "wordpairs": [
     {
-      "id": 1,
-      "diff": 1,
       "word": "cat",
-      "meaning": "macska"
+      "meaning": "macska",
+      "diff": "1",
+      "id": 1
     },
     {
       "id": 2,
@@ -15,7 +15,7 @@
     {
       "word": "dog",
       "meaning": "kutya",
-      "diff": "2",
+      "diff": "1",
       "id": 3
     }
   ],
