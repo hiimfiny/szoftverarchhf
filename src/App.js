@@ -15,7 +15,7 @@ function App() {
   const [wordpairs, setWordPairs] = useState([])
   const [sentences, setSentences] = useState([])
   const [lessons, setLessons] = useState([])
-
+  const [users, setUsers] = useState([])
   useEffect(() => {
     const getWords = async () => {
       const wordsFromServer = await fetchWords()
@@ -27,21 +27,24 @@ function App() {
     }
     const getLessons = async ()=>{
       const lessonsFromServer = await fetchLessons()
-      setLessons(lessonsFromServer)
+      setLessons(await fetchLessons())
+    }
+    const getUsers = async ()=>{
+      const usersFromServer = await fetchUsers()
+      setUsers(usersFromServer)
     }
 
     getWords()
     getSentences()
     getLessons()
+    getUsers()
   }, [])
   
   const fetchWords = async () =>{
     const res = await fetch('http://localhost:5000/wordpairs')
     const data = await res.json()
-    console.log(data)
     return data
   }
-
   const fetchSentences = async () =>{
     const res = await fetch('http://localhost:5000/sentences')
     const data = await res.json()
@@ -52,22 +55,41 @@ function App() {
     const data = await res.json()
     return data
   }
+  const fetchUsers = async () =>{
+    const res = await fetch('http://localhost:5000/users')
+    const data = await res.json()
+    return data
+  }
 
   const[showRegister, setShowRegister] = useState(false)
   const[showLogin, setShowLogin] = useState(false)
   const[showPairs, setShowPairs] = useState(false)
   const[showSentences, setShowSentences] = useState(false)
   const[showLessons, setShowLessons] = useState(false)
+  const[mod, setMod] = useState(false)
 
   const setRegFunc = () => {setShowRegister(!showRegister)}
   const setLogFunc = () => {setShowLogin(!showLogin)}
 
-  const addUser = (user) => {
-    console.log(user)
-}
 
+  //---User functions---
+  //Adding user
+  const addUser = async (user) => {
+    const res = await fetch('http://localhost:5000/users',{
+      method: 'POST',
+      headers:{ 'Content-type': 'application/json'},
+      body: JSON.stringify(user)
+    })
+    setUsers(await fetchUsers())
+  }
+
+  //Login function
   const login = (user) => {
-    console.log(`Welcome ${user.usr}`)
+    var alertv = 0
+    users.map((userm)=>{
+      if(userm.usr === user.usr && userm.pwd === user.pwd) {setMod(userm.mod); alertv=1}
+      else {if(alertv===0) {alert("Incorrect username or password"); alertv=1}}
+    })
   }
 
   //---Wordpair functions---
@@ -160,9 +182,9 @@ function App() {
       onClick={()=> setShowLogin(!showLogin)}/>}
       </div>
       <div>
-        <Button text='Wordpairs' onClick={()=>{setShowPairs(!showPairs)}}/>
-        <Button text='Sentences' onClick={()=>{setShowSentences(!showSentences)}}/>
-        <Button text='Lessons' onClick={()=>{setShowLessons(!showLessons)}}/>
+        {mod && <Button text='Wordpairs' onClick={()=>{setShowPairs(!showPairs)}}/>}
+        {mod && <Button text='Sentences' onClick={()=>{setShowSentences(!showSentences)}}/>}
+        {<Button text='Lessons' onClick={()=>{setShowLessons(!showLessons)}}/>}
       </div>
       <div>
       {showPairs && <Wordpairs wordpairs={wordpairs} 
@@ -180,14 +202,10 @@ function App() {
       
       <div>
         {showLessons && <Lessons lessons={lessons} wordpairs={wordpairs} 
-        sentences={sentences} onDelete={deleteLesson}/>}
+        sentences={sentences} onDelete={deleteLesson} onAdd={addLesson}/>}
+        
       </div>
       {/**/}
-      <div>
-        <AddLesson wordpairs={wordpairs} sentences={sentences}
-        onAdd={addLesson}/>
-      </div>
-      
     </div>
     
   );

@@ -2,7 +2,6 @@ import { useState } from "react"
 import Button from "../Button"
 import Result from "./Result"
 
-
 const Lesson = ({lesson, wordpairs, sentences}) => {
     const [showForm, setShowForm] = useState(true)
     const [solution, setSolution] = useState([])
@@ -84,7 +83,7 @@ const Lesson = ({lesson, wordpairs, sentences}) => {
         setShowForm(!showForm)
         
     }
-    
+
     return (
         <div>
             {showForm &&<form onSubmit={onSubmit}>

@@ -4,16 +4,14 @@ const Register = ( {onRegister, onClick} ) => {
 
 const [usr, SetUsername] = useState('')
 const [pwd, SetPassword] = useState('')
+const [mod, SetMod] = useState(false)
 
     const onSubmit = (e) => {
         e.preventDefault()
-
-        console.log(usr)
-        onRegister( { usr , pwd } )
+        onRegister( { usr , pwd, mod } )
         SetUsername('')
         SetPassword('')
         onClick()
-        
     }
 
     return (
@@ -27,6 +25,11 @@ const [pwd, SetPassword] = useState('')
                 <label>Password</label>
                 <input type='text' placeholder='Enter password'
                 value={pwd} onChange={(e) => SetPassword(e.target.value)}/>
+            </div>
+            <div className='form-control form-control-check'>
+                <label>Moderator</label>
+                <input type='checkbox' checked={mod}
+                value={mod} onChange={(e)=> SetMod(e.currentTarget.checked)}/>
             </div>
 
             <input className='btn' type='submit' value='Register' />

@@ -6,13 +6,10 @@ const Login = ({onLogin, onClick}) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-
-        onLogin( { usr , pwd } )
         SetUsername('')
         SetPassword('')
         onClick()
-        
-        
+        onLogin( { usr , pwd } )
     }
 
     return (

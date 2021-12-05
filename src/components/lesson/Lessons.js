@@ -2,13 +2,15 @@ import { useState } from "react"
 import {FaTimes} from 'react-icons/fa'
 import Lesson from "./Lesson"
 import Button from "../Button"
+import AddLesson from "./AddLesson"
 
-const Lessons = ({lessons,wordpairs, sentences, onDelete}) => {
+const Lessons = ({lessons,wordpairs, sentences, onDelete, onAdd}) => {
+    
+    
     var showArray = []
     for(let i=0; i<lessons.length;i++){
         showArray[i]=false
     }
-    
     const [lessonShow, setLessonShow] = useState(showArray)
     console.log(lessonShow)
     
@@ -21,6 +23,9 @@ const Lessons = ({lessons,wordpairs, sentences, onDelete}) => {
 
     return (
         <div>
+            <AddLesson wordpairs={wordpairs} sentences={sentences}
+            onAdd={onAdd}/>
+            <h3>Lessons:</h3>
             {lessons.map((lesson)=>(
                 <div key={lesson.id}>
                     

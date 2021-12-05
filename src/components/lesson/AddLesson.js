@@ -1,23 +1,18 @@
 import { useState } from "react"
-import Wordpairs from "../Wordpairs"
-import Wordpair from "../Wordpair"
-import Sentences from "../sentence/Sentences"
-import Sentence from "../sentence/Sentence"
 import Button from "../Button"
 
 const AddLesson = ({wordpairs, sentences, onAdd}) => {
     const [lessonpairs, setLessonpairs]=useState([])
     const [lessonsent, setLessonSent] = useState([])
     const [lessonname, setLessonName] = useState('')
-    console.log(lessonpairs)
-     var tempLesson={
-         name: '',
-         pairs: [],
-         sentences: []
+    const [showLessonAdd, setShowLessonAdd] = useState(false)
+    var tempLesson={
+        name: '',
+        pairs: [],
+        sentences: []
      }
 
     const onAddLesson = ()=>{
-        
         onAdd(lessonname,lessonpairs,lessonsent)
     }
 
@@ -47,6 +42,8 @@ const AddLesson = ({wordpairs, sentences, onAdd}) => {
     }
     return (
         <div>
+            <Button text='Add' onClick={()=>setShowLessonAdd(!showLessonAdd)}/>
+            {showLessonAdd && <div>
             <h3>Words:</h3>
             {wordpairs.map((pair)=>(
                 <div className='word' key={pair.id} 
@@ -78,9 +75,9 @@ const AddLesson = ({wordpairs, sentences, onAdd}) => {
                 <div key={sent.id}> 
                     {contains(sent.id,'s') && <h3>{sent.sentence}</h3>}
                 </div>
-
-
             ))}
+            </div>}
+            
         </div>
     )
 }
