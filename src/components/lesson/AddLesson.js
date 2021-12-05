@@ -14,6 +14,7 @@ const AddLesson = ({wordpairs, sentences, onAdd}) => {
 
     const onAddLesson = ()=>{
         onAdd(lessonname,lessonpairs,lessonsent)
+        setShowLessonAdd(!showLessonAdd)
     }
 
     const contains = (id,type) =>{

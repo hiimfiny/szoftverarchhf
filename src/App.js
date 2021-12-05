@@ -85,10 +85,10 @@ function App() {
 
   //Login function
   const login = (user) => {
-    var alertv = 0
+    let alertv = 0
     users.map((userm)=>{
       if(userm.usr === user.usr && userm.pwd === user.pwd) {setMod(userm.mod); alertv=1}
-      else {if(alertv===0) {alert("Incorrect username or password"); alertv=1}}
+      else {if(alertv==0) {alert("Incorrect username or password"); alertv=1}}
     })
   }
 
@@ -202,7 +202,7 @@ function App() {
       
       <div>
         {showLessons && <Lessons lessons={lessons} wordpairs={wordpairs} 
-        sentences={sentences} onDelete={deleteLesson} onAdd={addLesson}/>}
+        sentences={sentences} onDelete={deleteLesson} onAdd={addLesson} mod={mod}/>}
         
       </div>
       {/**/}

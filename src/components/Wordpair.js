@@ -10,11 +10,13 @@ const Wordpair = ({pair, showEdit, setEditId, onDelete}) => {
             <h3>{pair.meaning}</h3>
             <p>{pair.diff}</p>
             <div>
-                <FaPen onClick={()=>{
+                <FaPen style={{cursor: "pointer"}} 
+                    onClick={()=>{
                     setEditId(pair.id);
                     showEdit();
                 }}/>   
-                <FaTimes onClick={()=>onDelete(pair.id)}/>
+                <FaTimes style={{cursor: "pointer"}}
+                onClick={()=>onDelete(pair.id)}/>
             </div>
         </div>
     )

@@ -4,7 +4,7 @@ import Lesson from "./Lesson"
 import Button from "../Button"
 import AddLesson from "./AddLesson"
 
-const Lessons = ({lessons,wordpairs, sentences, onDelete, onAdd}) => {
+const Lessons = ({lessons,wordpairs, sentences, onDelete, onAdd, mod}) => {
     
     
     var showArray = []
@@ -23,16 +23,17 @@ const Lessons = ({lessons,wordpairs, sentences, onDelete, onAdd}) => {
 
     return (
         <div>
-            <AddLesson wordpairs={wordpairs} sentences={sentences}
-            onAdd={onAdd}/>
+            {mod && <AddLesson wordpairs={wordpairs} sentences={sentences}
+            onAdd={onAdd}/>}
             <h3>Lessons:</h3>
             {lessons.map((lesson)=>(
                 <div key={lesson.id}>
                     
                     <h3>{lesson.name}</h3>
-                    <FaTimes onClick={()=>onDelete(lesson.id)}/>
+                    <FaTimes style={{cursor: "pointer"}}
+                    onClick={()=>onDelete(lesson.id)}/>
                     <br/>
-                    <Button text='Solve'onClick={()=>updateShow(lesson.id-1)}/>
+                    {!mod && <Button text='Solve'onClick={()=>updateShow(lesson.id-1)}/>}
                     {lessonShow[lesson.id-1] && <Lesson key={lesson.id} lesson={lesson}
                     wordpairs={wordpairs} sentences={sentences}/>}
                 </div>

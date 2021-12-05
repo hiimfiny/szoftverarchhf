@@ -15,11 +15,13 @@ const Sentence = ( {sentence,showEdit,setEditId, onDelete} ) => {
                 <p>d) {sentence.d}</p>
             </div>
             <div>
-                <FaPen onClick={()=>{
+                <FaPen style={{cursor: "pointer"}}
+                    onClick={()=>{
                     setEditId(sentence.id)
                     showEdit()
                 }} />   
-                <FaTimes onClick={()=>onDelete(sentence.id)} />
+                <FaTimes style={{cursor: "pointer"}}
+                onClick={()=>onDelete(sentence.id)} />
             </div>
         </div>
     )
